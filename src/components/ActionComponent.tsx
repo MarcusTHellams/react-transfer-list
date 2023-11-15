@@ -14,6 +14,7 @@ export const ActionComponent = () => {
     <Box>
       <Stack>
         <Button
+          isDisabled={!rightItemsToMove.length}
           onClick={() => {
             if (rightItemsToMove.length) {
               moveItemsToLeft();
@@ -23,6 +24,7 @@ export const ActionComponent = () => {
           {'<'}
         </Button>
         <Button
+          isDisabled={!leftItemsToMove.length}
           onClick={() => {
             if (leftItemsToMove.length) {
               moveItemsToRight();

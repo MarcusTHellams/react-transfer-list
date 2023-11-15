@@ -3,13 +3,14 @@ import { Box, Checkbox, CheckboxGroup } from '@chakra-ui/react';
 import { useItemsContext } from '../context';
 
 export type ListComponentProps = {
-  items: number[];
   whichSide: 'left' | 'right';
 };
 
-export const ListComponent = ({ items, whichSide }: ListComponentProps) => {
+export const ListComponent = ({ whichSide }: ListComponentProps) => {
   const {
+    leftItems,
     leftItemsToMove,
+    rightItems,
     rightItemsToMove,
     setLeftItemsToMove,
     setRightItemsToMove,
@@ -36,7 +37,7 @@ export const ListComponent = ({ items, whichSide }: ListComponentProps) => {
         }}
       >
         <Box display="flex" flexDir="column">
-          {items.map((item) => {
+          {(isLeft ? leftItems : rightItems).map((item) => {
             return (
               <Checkbox value={item} key={item}>
                 {item}

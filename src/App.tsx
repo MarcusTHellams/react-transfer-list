@@ -1,18 +1,7 @@
 import { Box, Container } from '@chakra-ui/react';
 
 import { ActionComponent, ListComponent } from './components';
-import { ItemsContextProvider, useItemsContext } from './context';
-
-const MyContainer = () => {
-  const { leftItems, rightItems } = useItemsContext();
-  return (
-    <>
-      <ListComponent whichSide="left" items={leftItems} />
-      <ActionComponent />
-      <ListComponent whichSide="right" items={rightItems} />
-    </>
-  );
-};
+import { ItemsContextProvider } from './context';
 
 function App() {
   return (
@@ -26,7 +15,9 @@ function App() {
             justifyContent="center"
             gap="1rem"
           >
-            <MyContainer />
+            <ListComponent whichSide="left" />
+            <ActionComponent />
+            <ListComponent whichSide="right" />
           </Box>
         </ItemsContextProvider>
       </Container>
