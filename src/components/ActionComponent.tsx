@@ -1,33 +1,37 @@
 import { Box, Button, Stack } from '@chakra-ui/react';
 
-import { useItemsContext } from '../context';
+import { useItemsStore } from '../stores/itemsStore';
 
 export const ActionComponent = () => {
-  const {
-    leftItemsToMove,
-    moveItemsToLeft,
-    moveItemsToRight,
-    rightItemsToMove,
-  } = useItemsContext();
+  const rightSideItemsToMoveToTheLeft = useItemsStore(
+    (state) => state.rightSideItemsToMoveToTheLeft
+  );
+  const leftSideItemsToMoveToTheRight = useItemsStore(
+    (state) => state.leftSideItemsToMoveToTheRight
+  );
+  const moveItemsToTheLeft = useItemsStore((state) => state.moveItemsToTheLeft);
+  const moveItemsToTheRight = useItemsStore(
+    (state) => state.moveItemsToTheRight
+  );
 
   return (
     <Box>
       <Stack>
         <Button
-          isDisabled={!rightItemsToMove.length}
+          isDisabled={!rightSideItemsToMoveToTheLeft.length}
           onClick={() => {
-            if (rightItemsToMove.length) {
-              moveItemsToLeft();
+            if (rightSideItemsToMoveToTheLeft.length) {
+              moveItemsToTheLeft();
             }
           }}
         >
           {'<'}
         </Button>
         <Button
-          isDisabled={!leftItemsToMove.length}
+          isDisabled={!leftSideItemsToMoveToTheRight.length}
           onClick={() => {
-            if (leftItemsToMove.length) {
-              moveItemsToRight();
+            if (leftSideItemsToMoveToTheRight.length) {
+              moveItemsToTheRight();
             }
           }}
         >
